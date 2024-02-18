@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { useFetch } from '@/utils';
-import CatalogItem from '@/components/CatalogItem.vue';
-import type { Show } from '@/types';
-const { data, error } = useFetch<{ show: Show; score: number; }[]>('https://api.tvmaze.com/search/shows?q=Comedy')
+import { useFetch } from '@/utils'
+import CatalogItem from '@/components/CatalogItem.vue'
+import type { Show } from '@/types'
+const { data, error } = useFetch<{ show: Show; score: number }[]>(
+  'https://api.tvmaze.com/search/shows?q=Comedy'
+)
 console.log(data)
 </script>
 
