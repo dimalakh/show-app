@@ -8,7 +8,10 @@ defineProps<{
 
 <template>
   <div class="flex flex-col w-48 p-2">
-    <img :src="show?.image?.medium" alt="show.name" />
+    <img v-if="show?.image?.medium" :src="show?.image?.medium" alt="show.name" />
+    <div v-else class="w-[176px] h-[247px] bg-gray-200 flex items-center justify-center">
+      <p class="text-center text-gray-500 dark:text-gray-400">No image</p>
+    </div>
     <h4 class="green">{{ show.name }}</h4>
     <p>Language: {{ show.language }}</p>
     <!-- <p v-html="show.summary"></p> -->
