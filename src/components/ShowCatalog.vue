@@ -8,7 +8,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="flex flex-row flex-wrap">
-    <CatalogItem v-for="item in shows" :key="item.score" :show="item.show" />
+  <div class="grid grid-cols-6 gap-1 py-4">
+    <CatalogItem v-for="item in shows" :key="item.show.id" :show="item.show" />
   </div>
 </template>

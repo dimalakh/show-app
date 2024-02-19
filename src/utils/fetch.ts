@@ -1,22 +1,42 @@
-import { ref, toValue, watchEffect } from 'vue'
+import { ref, onMounted, watchEffect, onUnmounted, toValue } from 'vue'
 
 export function useFetch<T>(url: string | (() => string)) {
   const data = ref<T | null>(null)
-  const error = ref(null)
+  const error = ref<any>(null)
+  const isLoading = ref<boolean>(false)
 
   const fetchData = () => {
+    isLoading.value = true
     data.value = null
     error.value = null
 
     fetch(toValue(url))
-      .then((res) => res.json())
-      .then((json) => (data.value = json))
-      .catch((err) => (error.value = err))
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Failed to fetch data: ${res.statusText}`)
+        }
+        return res.json()
+      })
+      .then((json) => {
+        data.value = json
+      })
+      .catch((err) => {
+        error.value = err
+      })
+      .finally(() => {
+        isLoading.value = false
+      })
   }
+
+  const fetchOnMount = () => {
+    fetchData()
+  }
+
+  onMounted(fetchOnMount)
 
   watchEffect(() => {
     fetchData()
   })
 
-  return { data, error }
+  return { data, error, isLoading }
 }

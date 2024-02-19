@@ -8,9 +8,10 @@ import { ref } from 'vue'
 const availableGenres = ['drama', 'comedy', 'sports', 'documentary', 'reality', 'animation']
 
 const selectedGenre = ref(availableGenres[0])
-const { data } = useFetch<{ show: Show; score: number }[]>(
+const { data, isLoading } = useFetch<{ show: Show; score: number }[]>(
   () => `https://api.tvmaze.com/search/shows?q=${selectedGenre.value}`
 )
+
 function handleGenreChange(genre: string) {
   selectedGenre.value = genre
 }
@@ -18,6 +19,7 @@ function handleGenreChange(genre: string) {
 
 <template>
   <main>
+    <h1 class="text-3xl font-bold my-6">Best shows on the platform</h1>
     <GenreSelector
       :genres="availableGenres"
       :selectedGenre="selectedGenre"
