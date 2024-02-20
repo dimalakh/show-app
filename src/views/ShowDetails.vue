@@ -4,6 +4,8 @@ import { useFetch } from '@/utils'
 import { useRoute } from 'vue-router'
 import type { ShowDetails } from '@/types/ShowDetails'
 import { computed } from 'vue'
+import IconChevronLeft from '@/components/icons/IconChevronLeft.vue'
+import ShowImage from '@/components/ShowImage.vue'
 
 const route = useRoute()
 const showId = route.params.id as string
@@ -25,8 +27,10 @@ const numberOfSeasons = computed(() => seasons?.value?.length || 0)
 </script>
 
 <template>
-  <div>
-    <a @click="$router.go(-1)">back</a>
+  <div class="pt-6 pb-2">
+    <button class="flex items-center text-gray-600 hover:text-gray-800" @click="$router.go(-1)">
+      <IconChevronLeft class="mr-2" />Go back
+    </button>
   </div>
   <div class="flex flex-row py-8">
     <img v-if="data?.image?.medium" :src="data?.image?.original" alt="show.name" class="max-w-64" />
@@ -35,20 +39,25 @@ const numberOfSeasons = computed(() => seasons?.value?.length || 0)
     </div>
     <div class="ml-8">
       <h1 class="text-2xl font-bold">{{ data?.name }}</h1>
-      <p>Rating: {{ data?.rating?.average }}/10</p>
-      <p>Language: {{ data?.language }}</p>
-      <p>Genres: {{ data?.genres.join(', ') }}</p>
+      <p>
+        Rating: <b>{{ data?.rating?.average }}/10</b>
+      </p>
+      <p>
+        Language: <b>{{ data?.language }}</b>
+      </p>
+      <p>
+        Genres: <b>{{ data?.genres.join(', ') }}</b>
+      </p>
       <p v-html="data?.summary"></p>
     </div>
   </div>
   <div v-if="numberOfSeasons > 1">
     <h4 class="text-2xl font-semibold mb-2">Seasons</h4>
-    <ul class="flex flex-row">
-      <li v-for="item in seasons" :key="item.id" class="mr-2 max-w-56">
-        <img v-if="item?.image?.medium" :src="item?.image?.medium" />
-        <div v-else class="w-100 h-64 bg-gray-200"></div>
-        <p>{{ item.name || `Season ${item.number}` }}</p>
-        <p>number of episodes: {{ item.episodeOrder }}</p>
+    <ul class="relative w-full flex gap-6 snap-x snap-mandatory overflow-x-auto pb-6 shrink-0">
+      <li v-for="item in seasons" :key="item.id" class="w-36 shrink-0">
+        <ShowImage :imageUrls="item?.image?.medium" :alt="item.name" />
+        <p class="font-semibold mt-3">{{ item.name || `Season ${item.number}` }}</p>
+        <p v-if="item.episodeOrder">number of episodes: {{ item.episodeOrder }}</p>
       </li>
     </ul>
   </div>

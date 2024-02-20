@@ -8,7 +8,7 @@ import { ref } from 'vue'
 const availableGenres = ['drama', 'comedy', 'sports', 'documentary', 'reality', 'animation']
 
 const selectedGenre = ref(availableGenres[0])
-const { data, isLoading } = useFetch<{ show: Show; score: number }[]>(
+const { data, error } = useFetch<{ show: Show; score: number }[]>(
   () => `https://api.tvmaze.com/search/shows?q=${selectedGenre.value}`
 )
 
@@ -25,6 +25,9 @@ function handleGenreChange(genre: string) {
       :selectedGenre="selectedGenre"
       :onSelectGenre="handleGenreChange"
     />
+
     <ShowCatalog :shows="data" />
+
+    <div v-if="error" class="text-red-500">An error occurred: {{ error.message }}</div>
   </main>
 </template>
