@@ -32,12 +32,12 @@ const numberOfSeasons = computed(() => seasons?.value?.length || 0)
       <IconChevronLeft class="mr-2" />Go back
     </button>
   </div>
-  <div class="flex flex-row py-8">
+  <div class="flex flex-col md:flex-row py-8">
     <img v-if="data?.image?.medium" :src="data?.image?.original" alt="show.name" class="max-w-64" />
     <div v-else class="w-[176px] h-[247px] bg-gray-200 flex items-center justify-center">
       <p class="text-center text-gray-500 dark:text-gray-400">No image</p>
     </div>
-    <div class="ml-8">
+    <div class="mt-3 md:mt-0 md:ml-8">
       <h1 class="text-2xl font-bold">{{ data?.name }}</h1>
       <p>
         Rating: <b>{{ data?.rating?.average }}/10</b>
