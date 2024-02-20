@@ -2,15 +2,16 @@
 import { ref, watch } from 'vue'
 import MobileGenreSelector from './MobileGenreSelector.vue'
 import { useWindowSize } from '@/utils'
-const BREAKPOINT = 768
+
 const { selectedGenre } = defineProps<{
   genres: string[]
   selectedGenre: string
   onSelectGenre: (genre: string) => void
 }>()
+const BREAKPOINT = 768
 const { windowWidth } = useWindowSize()
 const isMobile = ref(windowWidth.value < BREAKPOINT)
-
+console.log(windowWidth.value)
 watch(windowWidth, (newWidth) => {
   isMobile.value = newWidth < BREAKPOINT
 })

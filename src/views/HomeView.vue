@@ -11,7 +11,7 @@ const { data, error, refetch } = useFetchShows({ searchQuery: selectedGenre })
 
 watch(selectedGenre, () => {
   refetch()
-});
+})
 
 function handleGenreChange(genre: string) {
   selectedGenre.value = genre

@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type { ShowDetails } from '@/types';
+import type { ShowDetails } from '@/types'
 
 defineProps<{
-    show: ShowDetails
+  show: ShowDetails
 }>()
 </script>
 <template>
-    <div class="flex flex-col md:flex-row py-8">
-    <img v-if="show.image?.medium" :src="show.image?.original" alt="show.name" class="max-w-64" />
+  <div class="flex flex-col md:flex-row py-8">
+    <img v-if="show.image?.medium" :src="show.image?.original" :alt="show.name" class="max-w-64" />
     <div v-else class="w-[176px] h-[247px] bg-gray-200 flex items-center justify-center">
       <p class="text-center text-gray-500 dark:text-gray-400">No image</p>
     </div>

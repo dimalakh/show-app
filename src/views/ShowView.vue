@@ -13,7 +13,6 @@ const { data: show } = useFetchShowDetails({ id: showId })
 const { data: seasons } = useFetchShowSeasons({ id: showId })
 
 const numberOfSeasons = computed(() => seasons?.value?.length || 0)
-
 </script>
 
 <template>
@@ -22,13 +21,13 @@ const numberOfSeasons = computed(() => seasons?.value?.length || 0)
       <IconChevronLeft class="mr-2" />Go back
     </button>
   </div>
-  
+
   <ShowDetails v-if="show" :show="show" />
 
   <div v-if="numberOfSeasons > 1">
     <h4 class="text-2xl font-semibold mb-2">Seasons</h4>
     <ul class="relative w-full flex gap-6 snap-x snap-mandatory overflow-x-auto pb-6 shrink-0">
-        <SeasonItemVue v-for="item in seasons" :key="item.id" :season="item" />
+      <SeasonItemVue v-for="item in seasons" :key="item.id" :season="item" />
     </ul>
   </div>
 </template>

@@ -1,7 +1,7 @@
 import { ref, onMounted, watchEffect, type UnwrapRef, type Ref, toValue } from 'vue'
 import { TvmazeApi } from './Api'
-import type { Season, ShowResponse } from '@/types';
-import type { ShowDetails } from '@/types/ShowDetails';
+import type { Season, ShowResponse } from '@/types'
+import type { ShowDetails } from '@/types/ShowDetails'
 
 const api = new TvmazeApi()
 
@@ -10,7 +10,7 @@ type HookArgs = { id?: string | undefined; searchQuery?: Ref<string | undefined>
 const createApiHook =
   <T>(fetchFn: (p: FetchFnParams) => Promise<T>) =>
   (args: HookArgs) => {
-    const data = ref<T| null>(null)
+    const data = ref<T | null>(null)
     const error = ref<any>(null)
     const isLoading = ref<boolean>(false)
 
@@ -35,7 +35,7 @@ const createApiHook =
     }
 
     onMounted(fetchOnMount)
-    
+
     watchEffect(() => {
       fetchData()
     })
