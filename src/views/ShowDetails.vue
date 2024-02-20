@@ -1,27 +1,15 @@
 <script setup lang="ts">
-import { useFetch } from '@/utils'
+import { useFetchShowSeasons, useFetchShowDetails } from '@/services'
 
 import { useRoute } from 'vue-router'
-import type { ShowDetails } from '@/types/ShowDetails'
 import { computed } from 'vue'
 import IconChevronLeft from '@/components/icons/IconChevronLeft.vue'
 import ShowImage from '@/components/ShowImage.vue'
 
 const route = useRoute()
 const showId = route.params.id as string
-const { data } = useFetch<ShowDetails>(`https://api.tvmaze.com/shows/${showId}`)
-const { data: seasons } = useFetch<
-  {
-    id: number
-    image: {
-      medium: string
-    }
-    name: string
-    number: number
-    url: string
-    episodeOrder: number
-  }[]
->(`https://api.tvmaze.com/shows/${showId}/seasons`)
+const { data } = useFetchShowDetails({ id: showId })
+const { data: seasons } = useFetchShowSeasons({ id: showId })
 
 const numberOfSeasons = computed(() => seasons?.value?.length || 0)
 </script>
