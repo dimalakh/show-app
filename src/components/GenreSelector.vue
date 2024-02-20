@@ -11,7 +11,7 @@ const { selectedGenre } = defineProps<{
 const BREAKPOINT = 768
 const { windowWidth } = useWindowSize()
 const isMobile = ref(windowWidth.value < BREAKPOINT)
-console.log(windowWidth.value)
+
 watch(windowWidth, (newWidth) => {
   isMobile.value = newWidth < BREAKPOINT
 })
