@@ -40,7 +40,7 @@ const createApiHook =
       fetchData()
     })
 
-    return { data, error, isLoading, refetch: fetchData }
+    return { data, error, isLoading }
   }
 
 export const useFetchShows = createApiHook<ShowResponse[]>(api.getShows)

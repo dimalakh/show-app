@@ -2,16 +2,12 @@
 import { useFetchShows } from '@/services'
 import ShowCatalog from '@/components/ShowCatalog.vue'
 import GenreSelector from '@/components/GenreSelector.vue'
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 
 const availableGenres = ['drama', 'comedy', 'sports', 'documentary', 'reality', 'animation']
 
 const selectedGenre = ref(availableGenres[0])
-const { data, error, refetch } = useFetchShows({ searchQuery: selectedGenre })
-
-watch(selectedGenre, () => {
-  refetch()
-})
+const { data, error } = useFetchShows({ searchQuery: selectedGenre })
 
 function handleGenreChange(genre: string) {
   selectedGenre.value = genre

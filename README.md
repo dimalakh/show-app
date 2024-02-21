@@ -1,52 +1,23 @@
 # shows-app
-
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+to run the app
 ```
-
-### Compile and Hot-Reload for Development
-
-```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+## project description
+1. For styling I decided to use tailwind css because it's easy to use and to set up, also because it allows to style fast.
+2. Data fetching - I introduced ```Api``` class where I handle communication with TvmazeApi, with that solution I will be able to extend api functionality fast and without duplicating code.
+Also I intoduced ```createApiHook``` function, that creates hooks out of Api methods, so in components I am able to use hooks witout calling methods form the class directly, because of that I also was alble to handle refetch logic inside of the hook.
+In this part of app there is a lot of room for improvement as I haven't cleaed up my code there.
+3. I also added unit tests for the components, I would like to add more, and especially for the ```createApiHook``` function.
+4
 
-```sh
-npm run build
-```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+## Screenshots
+![Home page](images/img-1.png?raw=true "Home page desktop")
 
-```sh
-npm run test:unit
-```
+![Show page](images/img-2.png?raw=true "Show page desktop")
 
-### Lint with [ESLint](https://eslint.org/)
+![Home page mobile](images/img-3.png?raw=true "Home page mobile")
 
-```sh
-npm run lint
-```
+![Show page mobile](images/img-4.png?raw=true "Show page mobile")
