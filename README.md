@@ -1,4 +1,8 @@
 # shows-app
+requirements:
+```
+Node v20.10.0
+```
 to run the app
 ```
 npm run dev
